@@ -7,11 +7,11 @@ import main.api.entitys.List;
 import main.api.entitys.Product;
 import main.api.repo.ListRepo;
 import main.api.repo.ProductRepo;
+import main.api.response.ListWithProductsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +27,18 @@ public class ListService {
         if (listRepo.findById(id).isPresent())
         {
             return new ResponseEntity<>(listRepo.findById(id).get(), HttpStatus.OK);
+        }
+        else {
+            return new ControllerAdvice().noSuchElementException();
+        }
+    }
+
+    public ResponseEntity<?> findByIdAndGetTotalKCal(long id) {
+        if (listRepo.findById(id).isPresent())
+        {
+            List list = listRepo.findById(id).get();
+            return new ResponseEntity<>(new ListWithProductsResponse(list.getId(), list.getName(), list.getProductList()),
+                    HttpStatus.OK);
         }
         else {
             return new ControllerAdvice().noSuchElementException();

@@ -21,6 +21,11 @@ public class ListController {
             return listService.findById(id);
     }
 
+    @GetMapping("/getlistwithkcal/{id}")
+    public ResponseEntity<?> getListByIdWithTotalKCal(@PathVariable long id) {
+        return listService.findByIdAndGetTotalKCal(id);
+    }
+
     @GetMapping("/getalllists")
     public ResponseEntity<?> getAllLists() {
         java.util.List<List> actualList = new ArrayList<>();
