@@ -70,4 +70,18 @@ public class ProductService {
             return new ControllerAdvice().noSuchElementException();
         }
     }
+
+    public ResponseEntity<?> changeProductById(long id, String name, String description, int kCal) {
+        if (productRepo.findById(id).isPresent()) {
+            Product oldProduct = productRepo.findById(id).get();
+            oldProduct.setDescription(description);
+            oldProduct.setName(name);
+            oldProduct.setKcal(kCal);
+            productRepo.save(oldProduct);
+            return new ResponseEntity<>(oldProduct, HttpStatus.OK);
+        }
+        else {
+            return new ControllerAdvice().noSuchElementException();
+        }
+    }
 }

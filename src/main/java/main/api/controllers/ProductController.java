@@ -35,8 +35,10 @@ public class ProductController {
     }
 
     @PutMapping("/changeproduct/{id}")
-    public ResponseEntity<?> changeExistedProduct(@RequestBody Product product) {
-        return productService.changeProduct(product);
-//        return ResponseEntity.ok(new DTOSuccessfully(null, new Date().getTime() / 1000, new DTOMessage()));
+    public ResponseEntity<?> changeExistedProduct(@RequestParam long id,
+                                                  @RequestBody String name,
+                                                  @RequestBody String description,
+                                                  @RequestBody int kCal) {
+        return productService.changeProductById(id, name, description, kCal);
     }
 }
