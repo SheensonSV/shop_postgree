@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepo extends CrudRepository<Product, Long> {
-    @Query("SELECT u FROM products u WHERE u.name = ?1")
+    @Query(value = "SELECT u FROM products u WHERE u.name = ?1", nativeQuery = true)
     List<Product> findProductByName(String name);
 }
