@@ -1,6 +1,7 @@
 package main.api.controllers;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import main.api.dto.DTOMessage;
 import main.api.dto.DTOSuccessfully;
 import main.api.entitys.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api")
 public class ProductController {
 

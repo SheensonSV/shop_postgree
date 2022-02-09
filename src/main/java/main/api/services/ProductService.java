@@ -1,5 +1,6 @@
 package main.api.services;
 
+import lombok.AllArgsConstructor;
 import main.api.controllers.ControllerAdvice;
 import main.api.entitys.Product;
 import main.api.repo.ProductRepo;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
+@AllArgsConstructor
 public class ProductService {
     @Autowired
     private ProductRepo productRepo;

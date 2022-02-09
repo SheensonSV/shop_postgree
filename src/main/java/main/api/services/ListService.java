@@ -1,5 +1,6 @@
 package main.api.services;
 
+import lombok.AllArgsConstructor;
 import main.api.controllers.ControllerAdvice;
 import main.api.dto.DTOMessage;
 import main.api.dto.DTOSuccessfully;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Service
+@AllArgsConstructor
 public class ListService {
     @Autowired
     private ListRepo listRepo;
