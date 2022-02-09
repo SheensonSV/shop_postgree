@@ -1,6 +1,8 @@
 package main.api.controllers;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import main.api.entitys.List;
 import main.api.response.ListWithProductsResponse;
 import main.api.services.ListService;
@@ -20,18 +22,30 @@ public class ListController {
 
     @GetMapping("/getlist/{id}")
     @ApiOperation(value = "get list by id", response = List.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "", response = List.class),
+            @ApiResponse(code = 500, message = "", response = ControllerAdvice.class),
+    })
     public ResponseEntity<?> getProductById(@PathVariable long id) {
         return listService.findById(id);
     }
 
     @GetMapping("/getlistwithkcal/{id}")
     @ApiOperation(value = "get list by id with total kCal", response = ListWithProductsResponse.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "", response = ListWithProductsResponse.class),
+            @ApiResponse(code = 500, message = "", response = ControllerAdvice.class),
+    })
     public ResponseEntity<?> getListByIdWithTotalKCal(@PathVariable long id) {
         return listService.findByIdAndGetTotalKCal(id);
     }
 
     @GetMapping("/getalllists")
     @ApiOperation(value = "get all lists as List<List>", response = java.util.List.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "", response = java.util.List.class),
+            @ApiResponse(code = 500, message = "", response = ControllerAdvice.class),
+    })
     public ResponseEntity<?> getAllLists() {
         java.util.List<List> actualList = new ArrayList<>();
         Iterator<List> iterator = listService.findAll().iterator();

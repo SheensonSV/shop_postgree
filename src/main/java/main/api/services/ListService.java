@@ -59,6 +59,7 @@ public class ListService {
         newList.setId(id);
         newList.setName(name);
         newList.setProductList(products);
+        listRepo.save(newList);
         return newList;
     }
 
